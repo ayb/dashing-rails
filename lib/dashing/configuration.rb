@@ -12,6 +12,7 @@ module Dashing
     attr_accessor :default_dashboard, :dashboards_views_path, :dashboard_layout_path
     attr_accessor :widgets_views_path, :widgets_js_path, :widgets_css_path
     attr_accessor :engine_path, :scheduler
+    attr_accessor :max_thread_count
 
     def initialize
       @engine_path            = '/dashing'
@@ -53,6 +54,7 @@ module Dashing
     private
 
     def request_thread_count
+      return @max_thread_count unless @max_thread_count.blank?
       if defined?(::Puma) && ::Puma.respond_to?(:cli_config)
         ::Puma.cli_config.options.fetch(:max_threads, 5).to_i
       else
