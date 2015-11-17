@@ -12,6 +12,8 @@ module Dashing
           response.stream.write("data: #{data}\n\n")
         end
       end
+    rescue Timeout::Error
+      nil
     rescue IOError
       logger.info "[Dashing][#{Time.now.utc.to_s}] Stream closed"
     ensure
