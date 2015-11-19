@@ -11,8 +11,9 @@ module Dashing
         on.pmessage do |pattern, event, data|
           response.stream.write("data: #{data}\n\n")
         end
+        sleep 0.1
       end
-    rescue
+    rescue IOError
       logger.info "[Dashing][#{Time.now.utc.to_s}] Stream closed"
     ensure
       @redis.quit
