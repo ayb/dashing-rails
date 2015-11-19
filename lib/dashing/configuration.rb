@@ -51,6 +51,11 @@ module Dashing
     def new_redis_connection
       ::Redis.new(host: redis_host, port: redis_port, password: redis_password)
     end
+    
+    # error
+    def scheduler.on_error(job, error)
+      nil
+    end
 
     private
 
@@ -64,11 +69,7 @@ module Dashing
     end
   end
   
-  # error
 
-  scheduler.on_error do |job, error|
-    # keep silent, do nothing
-  end
 end
 
 
