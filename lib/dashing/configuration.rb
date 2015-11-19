@@ -41,6 +41,11 @@ module Dashing
       @widgets_views_path     = Rails.root.join('app', 'views', 'dashing', 'widgets')
       @widgets_js_path        = Rails.root.join('app', 'assets', 'javascripts', 'dashing')
       @widgets_css_path       = Rails.root.join('app', 'assets', 'stylesheets', 'dashing')
+      
+      # error
+      scheduler.on_error(job, error)
+        # keep silent, do nothing
+      end
     end
 
     def redis
