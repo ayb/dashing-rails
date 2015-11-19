@@ -63,9 +63,12 @@ module Dashing
       end
     end
   end
+  
+  # error
+
+  scheduler.on_error do |job, error|
+    # keep silent, do nothing
+  end
 end
 
-# error
-def Dashing.scheduler.on_error(job, error)
-  # keep silent, do nothing
-end
+
